@@ -19,6 +19,7 @@
 
 #include "server-context.h"
 #include "server-queue.h"
+#include "server-schema.h"
 
 #include "ggml-cpu.h"
 #include "ggml-backend.h"
@@ -300,7 +301,7 @@ struct wllama_context
       server_task task = server_task(SERVER_TASK_TYPE_COMPLETION);
       task.id = rd->get_new_id();
       task.index = 0;
-      task.params = server_task::eval_llama_cmpl_schema(
+      task.params = server_schema::eval_llama_cmpl_schema(
           vocab,
           params,
           meta->slot_n_ctx,
